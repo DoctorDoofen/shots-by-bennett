@@ -32,6 +32,19 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
+    op.create_table('appointments',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=100), nullable=False),
+    sa.Column('description', sa.Text(), nullable=False),
+    sa.Column('scheduled_time', sa.DateTime, nullable=False),
+    sa.Column('user_id', sa.Integer(), sa.ForeignKey('user.id'), nullable=False)
+    )
+
+
+    op.create_table('photos')
+    op.create_table('reviews')
+    
+
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###qqqqqqqqq
