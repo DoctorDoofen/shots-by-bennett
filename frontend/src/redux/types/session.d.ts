@@ -8,7 +8,7 @@ export interface IUser {
     email: string;
 }
 
-export interface ISignUpUser{
+export interface ISignUpUser {
     email: string;
     username: string;
     password: string;

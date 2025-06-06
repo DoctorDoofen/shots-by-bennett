@@ -29,7 +29,6 @@ function SignupFormModal() {
     confirmPassword: ""
   });
   const { closeModal } = useModal();
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
