@@ -10,14 +10,15 @@ class Review (db.Model):
 
         id = db.Column(db.Integer, primary_key=True)
         text = db.Column(db.Text, nullable=False)
-        review_id = db.Column(db.Integer, db.ForeignKey('review.id'), nullable=False)
         user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
         created_at = db.Column(db.DateTime, default=db.func.now())
 
-        user = db.relationship("User", back_populates="reviews", casade="all, delete")
+        user = db.relationship("User", back_populates="reviews", cascade="all, delete")
 
         def to_dict(self):
             return {
                 "id": self.id,
-                "text": self.text
+                "text": self.text,
+                "user_id": self.user_id,
+                "created_at": self.created_at.isoformat()
             }
