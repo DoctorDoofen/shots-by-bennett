@@ -1,9 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
-
-class Photo(db.model):
-
+class Photo(db.Model):
     __tablename__ = 'photos'
 
     if environment == "production":
@@ -13,3 +11,9 @@ class Photo(db.model):
     filename = db.Column(db.String(100), nullable=False)
     uploaded_at = db.Column(db.DateTime, default=db.func.now())
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "filename": self.filename,
+            "uploaded_at": self.uploaded_at.isoformat()
+        }
